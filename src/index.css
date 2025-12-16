@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* Custom styles for the anime waifu app */
+@layer base {
+  :root {
+    --primary: 265 80% 60%;
+    --primary-glow: 265 100% 70%;
+    --secondary: 340 75% 55%;
+    --accent: 180 70% 50%;
+    --background-dark: 240 15% 8%;
+    --surface: 240 12% 12%;
+    --surface-light: 240 10% 18%;
+    --text-primary: 0 0% 95%;
+    --text-secondary: 0 0% 70%;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+  
+  .glow-button {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+  
+  .glow-button::before {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    content: '';
+    background: radial-gradient(circle at center, hsl(var(--primary-glow) / 0.4), transparent 70%);
+  }
+  
+  .glow-button:hover::before {
+    @apply opacity-100;
+  }
+  
+  .message-user {
+    @apply bg-gradient-to-r from-blue-600/20 to-blue-500/10 border-l-4 border-blue-500;
+  }
+  
+  .message-waifu {
+    @apply bg-gradient-to-r from-pink-600/20 to-purple-500/10 border-l-4 border-pink-500;
+  }
+  
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-white/5 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-white/20 rounded-full hover:bg-white/30 transition-colors;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(var(--primary) / 0.5), 0 0 60px hsl(var(--primary) / 0.2);
+    }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
